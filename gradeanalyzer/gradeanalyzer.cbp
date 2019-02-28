@@ -13,14 +13,22 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="Model" />
 				</Compiler>
+				<Environment>
+					<Variable name="DEBUG_LEVEL" value="3" />
+				</Environment>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-std=c++11" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Model/Student.cpp" />
+		<Unit filename="Model/Student.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="notes.txt" />
 		<Extensions>
 			<code_completion />
 			<envvars />
