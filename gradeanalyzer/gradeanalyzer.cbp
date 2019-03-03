@@ -25,6 +25,8 @@
 			<Add option="-std=c++11" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Model/Roster.cpp" />
+		<Unit filename="Model/Roster.h" />
 		<Unit filename="Model/Student.cpp" />
 		<Unit filename="Model/Student.h" />
 		<Unit filename="main.cpp" />

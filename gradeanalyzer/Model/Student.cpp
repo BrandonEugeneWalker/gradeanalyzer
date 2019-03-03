@@ -6,12 +6,14 @@
 using namespace std;
 
 
+namespace model
+{
 
 Student::Student()
 {
-    #if DEBUG_LEVEL >= 3
-        cout << "In Student constructor" << endl;
-    #endif // DEBUG_LEVEL
+#if DEBUG_LEVEL >= 3
+    cout << "In Student constructor" << endl;
+#endif // DEBUG_LEVEL
 
     this -> firstName = string();
     this -> lastName = string();
@@ -20,9 +22,9 @@ Student::Student()
 
 Student::~Student()
 {
-    #if DEBUG_LEVEL >= 3
-        cout << "In Student destructor" << endl;
-    #endif // DEBUG_LEVEL
+#if DEBUG_LEVEL >= 3
+    cout << "In Student destructor" << endl;
+#endif // DEBUG_LEVEL
 }
 
 string Student::getFirstName() const
@@ -65,4 +67,17 @@ void Student::setGrade(int grade)
         throw new invalid_argument("The grade cannot be less than 0");
     }
     this -> grade = grade;
+}
+
+string Student::getDescription()
+{
+    string first = this -> firstName;
+    string last = this -> lastName;
+    string grade = to_string(this -> grade);
+    string returnString = first + ", " + last + ", " + grade;
+
+    return returnString;
+
+}
+
 }
