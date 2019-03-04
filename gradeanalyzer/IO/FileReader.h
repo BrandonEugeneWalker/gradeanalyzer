@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <stdexcept>
 using namespace std;
 
 namespace IO

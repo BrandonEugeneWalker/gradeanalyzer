@@ -22,6 +22,11 @@ FileReader::~FileReader()
 
 vector<string> FileReader::ReadFile(const string& fileName)
 {
+    if (fileName.empty())
+    {
+        throw new invalid_argument("The file name cannot be empty!");
+    }
+
     ifstream file(fileName);
     vector<string> returnVector;
 
