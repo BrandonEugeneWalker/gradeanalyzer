@@ -13,7 +13,7 @@ Roster::Roster()
 Roster::~Roster()
 {
 #if DEBUG_LEVEL >= 3
-    cout << "In Roster destructor" << endl;
+        cout << "In Roster destructor" << endl;
 #endif // DEBUG_LEVEL
 }
 

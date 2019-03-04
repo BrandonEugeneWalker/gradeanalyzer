@@ -74,7 +74,7 @@ string Student::getDescription()
     string first = this -> firstName;
     string last = this -> lastName;
     string grade = to_string(this -> grade);
-    string returnString = first + ", " + last + ", " + grade;
+    string returnString = first + "," + last + "," + grade;
 
     return returnString;
 
