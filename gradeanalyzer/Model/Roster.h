@@ -46,8 +46,15 @@ public:
     //@precondition
     // none
     //@postcondition
-    // the vector is sorted
+    // the vector is sorted by last name
     void sortByLastName();
+
+    //Will sort the vector by first name.
+    //@precondition
+    // none
+    //@postcondition
+    //  the vector is sorted by first name
+    void sortByFirstName();
 
 };
 
