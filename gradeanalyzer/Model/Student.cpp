@@ -46,7 +46,7 @@ void Student::SetFirstName(const string& firstName)
 {
     if (firstName.empty())
     {
-            throw new invalid_argument("The first name cannot be empty!");
+        throw new invalid_argument("The first name cannot be empty!");
     }
     this -> firstName = firstName;
 }

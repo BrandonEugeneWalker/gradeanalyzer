@@ -175,6 +175,30 @@ void OutputBuilder::sortAllStudentGroupsByFirstOrLastName(bool sortByLastName)
     }
 }
 
+string OutputBuilder::buildGradeHistogram()
+{
+    int numberOfGradeA = this -> studentsWithGradeA.Size();
+    int numberOfGradeB = this -> studentsWithGradeB.Size();
+    int numberOfGradeC = this -> studentsWithGradeC.Size();
+    int numberOfGradeD = this -> studentsWithGradeD.Size();
+    int numberOfGradeF = this -> studentsWithGradeF.Size();
+    string gradeAHistogramBar(numberOfGradeA, '*');
+    string gradeBHistogramBar(numberOfGradeB, '*');
+    string gradeCHistogramBar(numberOfGradeC, '*');
+    string gradeDHistogramBar(numberOfGradeD, '*');
+    string gradeFHistogramBar(numberOfGradeF, '*');
+
+
+    string returnString = "Grade Histogram:\n";
+    returnString += "A: " + gradeAHistogramBar + "\n";
+    returnString += "B: " + gradeBHistogramBar + "\n";
+    returnString += "C: " + gradeCHistogramBar + "\n";
+    returnString += "D: " + gradeDHistogramBar + "\n";
+    returnString += "F: " + gradeFHistogramBar + "\n";
+
+    return returnString;
+}
+
 string OutputBuilder::BuildFileOutput(Roster students)
 {
     vector<Student> outputStudents = students.GetStudents();
@@ -186,7 +210,7 @@ string OutputBuilder::BuildFileOutput(Roster students)
     return returnString;
 }
 
-string OutputBuilder::BuildFullOutput(Roster& students, int columnNumber, int columnWidth, bool includeGrades, bool sortByLastName)
+string OutputBuilder::BuildFullOutput(Roster& students, int columnNumber, int columnWidth, bool includeGrades, bool sortByLastName, bool displayHistogram)
 {
     if (columnNumber <= 0)
     {
@@ -231,6 +255,10 @@ string OutputBuilder::BuildFullOutput(Roster& students, int columnNumber, int co
         returnString += baseStatementString + "F" + "\n";
         returnString += this -> buildOutputForGrade(this -> studentsWithGradeF, columnNumber, columnWidth, includeGrades);
         returnString += "\n";
+    }
+    if (displayHistogram)
+    {
+        returnString += this -> buildGradeHistogram();
     }
 
     return returnString;

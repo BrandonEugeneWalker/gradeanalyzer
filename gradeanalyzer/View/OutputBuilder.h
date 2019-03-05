@@ -39,6 +39,8 @@ private:
 
     string buildStudentDescriptionWithGrade(Student& student);
 
+        string buildGradeHistogram();
+
 
 
 public:
@@ -75,7 +77,9 @@ public:
     //  true if grades are included in the output
     //@para sortByLastName
     //  true if sorting by last name, false if sorting by first name.
-    string BuildFullOutput(Roster& students, int columnNumber, int columnWidth, bool includeGrades, bool sortByLastName);
+    //@para displayHistogram
+    //  true if displaying the histogram after the summary, false if not
+    string BuildFullOutput(Roster& students, int columnNumber, int columnWidth, bool includeGrades, bool sortByLastName, bool displayHistogram);
 
 };
 
