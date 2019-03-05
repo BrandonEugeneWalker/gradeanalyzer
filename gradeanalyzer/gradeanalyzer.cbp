@@ -15,6 +15,7 @@
 					<Add option="-g" />
 					<Add directory="Model" />
 					<Add directory="IO" />
+					<Add directory="View" />
 				</Compiler>
 				<Environment>
 					<Variable name="DEBUG_LEVEL" value="3" />
@@ -28,10 +29,14 @@
 		</Compiler>
 		<Unit filename="IO/FileReader.cpp" />
 		<Unit filename="IO/FileReader.h" />
+		<Unit filename="IO/FileWriter.cpp" />
+		<Unit filename="IO/FileWriter.h" />
 		<Unit filename="Model/Roster.cpp" />
 		<Unit filename="Model/Roster.h" />
 		<Unit filename="Model/Student.cpp" />
 		<Unit filename="Model/Student.h" />
+		<Unit filename="View/OutputBuilder.cpp" />
+		<Unit filename="View/OutputBuilder.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="notes.txt" />
 		<Extensions>

@@ -19,10 +19,10 @@ FileWriter::~FileWriter()
 
 void FileWriter::WriteFile(const string& fileName, const string& output)
 {
-        if (fileName.empty())
-        {
-            throw new invalid_argument("The file name cannot be empty!");
-        }
+    if (fileName.empty())
+    {
+        throw new invalid_argument("The file name cannot be empty!");
+    }
 
     ofstream file;
     file.open(fileName);

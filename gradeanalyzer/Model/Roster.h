@@ -33,28 +33,35 @@ public:
     //  none
     //@return
     //  a collection of students
-    vector<Student> getStudents();
+    vector<Student> GetStudents();
 
     //Adds a student to the roster.
     //@precondition
     //  The student cannot be a null pointer.
     //@postcondition
     //  the student is added.
-    void addStudent(Student& student);
+    void AddStudent(Student& student);
 
     //Will sort the vector by last name.
     //@precondition
     // none
     //@postcondition
     // the vector is sorted by last name
-    void sortByLastName();
+    void SortByLastName();
 
     //Will sort the vector by first name.
     //@precondition
     // none
     //@postcondition
     //  the vector is sorted by first name
-    void sortByFirstName();
+    void SortByFirstName();
+
+    //Gets and returns the size of the Roster's collection.
+    //@precondition
+    //  none
+    //@return
+    //  the size of the Roster.
+        int Size();
 
 };
 

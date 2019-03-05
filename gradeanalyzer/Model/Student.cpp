@@ -27,31 +27,31 @@ Student::~Student()
 #endif // DEBUG_LEVEL
 }
 
-string Student::getFirstName() const
+string Student::GetFirstName() const
 {
     return this -> firstName;
 }
 
-string Student::getLastName() const
+string Student::GetLastName() const
 {
     return this -> lastName;
 }
 
-int Student::getGrade()
+int Student::GetGrade()
 {
     return this -> grade;
 }
 
-void Student::setFirstName(const string& firstName)
+void Student::SetFirstName(const string& firstName)
 {
     if (firstName.empty())
     {
-        throw new invalid_argument("The first name cannot be empty!");
+            throw new invalid_argument("The first name cannot be empty!");
     }
     this -> firstName = firstName;
 }
 
-void Student::setLastName(const string& lastName)
+void Student::SetLastName(const string& lastName)
 {
     if (firstName.empty())
     {
@@ -60,7 +60,7 @@ void Student::setLastName(const string& lastName)
     this -> lastName = lastName;
 }
 
-void Student::setGrade(int grade)
+void Student::SetGrade(int grade)
 {
     if (grade < 0)
     {
@@ -69,7 +69,7 @@ void Student::setGrade(int grade)
     this -> grade = grade;
 }
 
-string Student::getDescription()
+string Student::GetDescription()
 {
     string first = this -> firstName;
     string last = this -> lastName;

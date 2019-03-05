@@ -33,49 +33,49 @@ public:
     //  none
     //@return
     //  the student's first name
-    string getFirstName() const;
+    string GetFirstName() const;
 
     //Gets the last name of a student.
     //@precondition
     //  none
     //@return
     //  the student's last name
-    string getLastName() const;
+    string GetLastName() const;
 
     //Gets the student's grade.
     //@precondition
     //  none
     //@return
     //  the student's grade
-    int getGrade();
+    int GetGrade();
 
     //Sets the first name of a student.
     //@precondition
     //  the first name cannot be none
     //@postcondition
     //  the first name is set
-    void setFirstName(const string& firstName);
+    void SetFirstName(const string& firstName);
 
     //Sets the last name of a student.
     //@precondition
     //  the last name cannot be none
     //@postcondition
     //  the last name is set
-    void setLastName(const string& lastName);
+    void SetLastName(const string& lastName);
 
     //Sets the grade of a student.
     //@precondition
     //  grade must be greater than or equal to 0
     //@postcondition
     //  the grade is set
-    void setGrade(int grade);
+    void SetGrade(int grade);
 
     //Gets the combined description of the Student.
     //@precondition
     //  none
     //@return
     //  a description of the student
-    string getDescription();
+    string GetDescription();
 
 
 

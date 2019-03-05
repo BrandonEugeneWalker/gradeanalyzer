@@ -17,34 +17,39 @@ Roster::~Roster()
 #endif // DEBUG_LEVEL
 }
 
-vector<Student> Roster::getStudents()
+vector<Student> Roster::GetStudents()
 {
     return this -> students;
 }
 
-void Roster::addStudent(Student& student)
+void Roster::AddStudent(Student& student)
 {
     this -> students.push_back(student);
 }
 
 bool compareStudentsByLastName(const Student &firstStudent, const Student &secondStudent)
 {
-    return firstStudent.getLastName() < secondStudent.getLastName();
+    return firstStudent.GetLastName() < secondStudent.GetLastName();
 }
 
-void Roster::sortByLastName()
+void Roster::SortByLastName()
 {
     sort(this -> students.begin(), this -> students.end(), compareStudentsByLastName);
 }
 
 bool compareStudentsByFirstName(const Student &firstStudent, const Student &secondStudent)
 {
-    return firstStudent.getFirstName() < secondStudent.getFirstName();
+    return firstStudent.GetFirstName() < secondStudent.GetFirstName();
 }
 
-void Roster::sortByFirstName()
+void Roster::SortByFirstName()
 {
     sort(this -> students.begin(), this -> students.end(), compareStudentsByFirstName);
+}
+
+int Roster::Size()
+{
+    return this -> students.size();
 }
 
 
