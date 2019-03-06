@@ -3,6 +3,8 @@
 
 #include <string>
 #include <stdexcept>
+#include <iostream>
+#include <iomanip>
 using namespace std;
 
 #include "Student.h"
@@ -31,7 +33,7 @@ private:
 
     void sortAllStudentGroupsByFirstOrLastName(bool sortByLastName);
 
-    string buildOutputForGrade(Roster& currentRoster, int columnNumber, int columnWidth, bool includeGrades);
+    void buildOutputForGrade(Roster& currentRoster, int columnNumber, int columnWidth, bool includeGrades);
 
     string setNameToCamalCase(string name);
 
@@ -39,7 +41,7 @@ private:
 
     string buildStudentDescriptionWithGrade(Student& student);
 
-        string buildGradeHistogram();
+    void buildGradeHistogram();
 
 
 
@@ -59,7 +61,7 @@ public:
     //  none
     //@return
     //  a string containing the file output
-    string BuildFileOutput(Roster students);
+    string buildFileOutput(Roster students);
 
     //Builds the string output for the console based on a variety of parameters.
     //@precondition
@@ -79,7 +81,14 @@ public:
     //  true if sorting by last name, false if sorting by first name.
     //@para displayHistogram
     //  true if displaying the histogram after the summary, false if not
-    string BuildFullOutput(Roster& students, int columnNumber, int columnWidth, bool includeGrades, bool sortByLastName, bool displayHistogram);
+    void buildFullOutput(Roster& students, int columnNumber, int columnWidth, bool includeGrades, bool sortByLastName, bool displayHistogram);
+
+    //Displays the usage statement of the program.
+    //@precondition
+    //  none
+    //@postcondition
+    //  the usage statement is printed out
+    void displayUsageStatement();
 
 };
 

@@ -45,32 +45,32 @@ void OutputBuilder::determineStudentPlacement(Student& student, int grade)
 {
     if (grade > 89)
     {
-        this -> studentsWithGradeA.AddStudent(student);
+        this -> studentsWithGradeA.addStudent(student);
     }
     else if (grade > 79)
     {
-        this -> studentsWithGradeB.AddStudent(student);
+        this -> studentsWithGradeB.addStudent(student);
     }
     else if (grade > 74)
     {
-        this -> studentsWithGradeC.AddStudent(student);
+        this -> studentsWithGradeC.addStudent(student);
     }
     else if (grade > 69)
     {
-        this -> studentsWithGradeD.AddStudent(student);
+        this -> studentsWithGradeD.addStudent(student);
     }
     else
     {
-        this -> studentsWithGradeF.AddStudent(student);
+        this -> studentsWithGradeF.addStudent(student);
     }
 }
 
 void OutputBuilder::sortStudentsIntoGradeCategories(Roster& students)
 {
-    vector<Student> unsortedStudents = students.GetStudents();
+    vector<Student> unsortedStudents = students.getStudents();
     for(Student currentStudent : unsortedStudents)
     {
-        int grade = currentStudent.GetGrade();
+        int grade = currentStudent.getGrade();
         determineStudentPlacement(currentStudent, grade);
     }
 }
@@ -95,8 +95,8 @@ string OutputBuilder::setNameToCamalCase(string name)
 
 string OutputBuilder::buildStudentDescriptionWithoutGrade(Student& student)
 {
-    string firstName = this -> setNameToCamalCase(student.GetFirstName());
-    string lastName = this -> setNameToCamalCase(student.GetLastName());
+    string firstName = this -> setNameToCamalCase(student.getFirstName());
+    string lastName = this -> setNameToCamalCase(student.getLastName());
     string returnString = firstName + " " + lastName;
     return returnString;
 }
@@ -104,26 +104,24 @@ string OutputBuilder::buildStudentDescriptionWithoutGrade(Student& student)
 string OutputBuilder::buildStudentDescriptionWithGrade(Student& student)
 {
     string returnString = this -> buildStudentDescriptionWithGrade(student);
-    int grade = student.GetGrade();
+    int grade = student.getGrade();
     returnString += " (" + to_string(grade) + ")";
     return returnString;
 }
 
-string OutputBuilder::buildOutputForGrade(Roster& currentRoster, int columnNumber, int columnWidth, bool includeGrades)
+void OutputBuilder::buildOutputForGrade(Roster& currentRoster, int columnNumber, int columnWidth, bool includeGrades)
 {
-    vector<Student> students = currentRoster.GetStudents();
-    string returnString;
+    vector<Student> students = currentRoster.getStudents();
     int currentColumn = 1;
     if (includeGrades)
     {
         for (Student currentStudent : students)
         {
             string studentDescription = this -> buildStudentDescriptionWithGrade(currentStudent);
-            string paddedDescription = this -> addSpacePaddingToColumn(studentDescription, columnWidth);
-            returnString += paddedDescription;
+            cout << left << setw(columnWidth) << studentDescription;
             if (currentColumn == columnNumber)
             {
-                returnString += "\n";
+                cout << endl;
                 currentColumn = 1;
             }
             else
@@ -137,11 +135,10 @@ string OutputBuilder::buildOutputForGrade(Roster& currentRoster, int columnNumbe
         for (Student currentStudent : students)
         {
             string studentDescription = this -> buildStudentDescriptionWithoutGrade(currentStudent);
-            string paddedDescription = this -> addSpacePaddingToColumn(studentDescription, columnWidth);
-            returnString += paddedDescription;
+            cout << left << setw(columnWidth) << studentDescription;
             if (currentColumn == columnNumber)
             {
-                returnString += "\n";
+                cout << endl;
                 currentColumn = 1;
             }
             else
@@ -150,38 +147,36 @@ string OutputBuilder::buildOutputForGrade(Roster& currentRoster, int columnNumbe
             }
         }
     }
-    returnString += "\n";
-    return returnString;
-
+    cout << endl;
 }
 
 void OutputBuilder::sortAllStudentGroupsByFirstOrLastName(bool sortByLastName)
 {
     if (sortByLastName)
     {
-        this -> studentsWithGradeA.SortByLastName();
-        this -> studentsWithGradeB.SortByLastName();
-        this -> studentsWithGradeC.SortByLastName();
-        this -> studentsWithGradeD.SortByLastName();
-        this -> studentsWithGradeF.SortByLastName();
+        this -> studentsWithGradeA.sortByLastName();
+        this -> studentsWithGradeB.sortByLastName();
+        this -> studentsWithGradeC.sortByLastName();
+        this -> studentsWithGradeD.sortByLastName();
+        this -> studentsWithGradeF.sortByLastName();
     }
     else
     {
-        this -> studentsWithGradeA.SortByFirstName();
-        this -> studentsWithGradeB.SortByFirstName();
-        this -> studentsWithGradeC.SortByFirstName();
-        this -> studentsWithGradeD.SortByFirstName();
-        this -> studentsWithGradeF.SortByFirstName();
+        this -> studentsWithGradeA.sortByFirstName();
+        this -> studentsWithGradeB.sortByFirstName();
+        this -> studentsWithGradeC.sortByFirstName();
+        this -> studentsWithGradeD.sortByFirstName();
+        this -> studentsWithGradeF.sortByFirstName();
     }
 }
 
-string OutputBuilder::buildGradeHistogram()
+void OutputBuilder::buildGradeHistogram()
 {
-    int numberOfGradeA = this -> studentsWithGradeA.Size();
-    int numberOfGradeB = this -> studentsWithGradeB.Size();
-    int numberOfGradeC = this -> studentsWithGradeC.Size();
-    int numberOfGradeD = this -> studentsWithGradeD.Size();
-    int numberOfGradeF = this -> studentsWithGradeF.Size();
+    int numberOfGradeA = this -> studentsWithGradeA.size();
+    int numberOfGradeB = this -> studentsWithGradeB.size();
+    int numberOfGradeC = this -> studentsWithGradeC.size();
+    int numberOfGradeD = this -> studentsWithGradeD.size();
+    int numberOfGradeF = this -> studentsWithGradeF.size();
     string gradeAHistogramBar(numberOfGradeA, '*');
     string gradeBHistogramBar(numberOfGradeB, '*');
     string gradeCHistogramBar(numberOfGradeC, '*');
@@ -190,27 +185,25 @@ string OutputBuilder::buildGradeHistogram()
 
 
     string returnString = "Grade Histogram:\n";
-    returnString += "A: " + gradeAHistogramBar + "\n";
-    returnString += "B: " + gradeBHistogramBar + "\n";
-    returnString += "C: " + gradeCHistogramBar + "\n";
-    returnString += "D: " + gradeDHistogramBar + "\n";
-    returnString += "F: " + gradeFHistogramBar + "\n";
-
-    return returnString;
+    cout << "A: " << gradeAHistogramBar << endl;
+    cout << "B: " << gradeBHistogramBar << endl;
+    cout << "C: " << gradeCHistogramBar << endl;
+    cout << "D: " << gradeDHistogramBar << endl;
+    cout << "F: " << gradeFHistogramBar << endl;
 }
 
-string OutputBuilder::BuildFileOutput(Roster students)
+string OutputBuilder::buildFileOutput(Roster students)
 {
-    vector<Student> outputStudents = students.GetStudents();
+    vector<Student> outputStudents = students.getStudents();
     string returnString;
     for (Student currentStudent : outputStudents)
     {
-        returnString += currentStudent.GetDescription() + "\n";
+        returnString += currentStudent.getDescription() + "\n";
     }
     return returnString;
 }
 
-string OutputBuilder::BuildFullOutput(Roster& students, int columnNumber, int columnWidth, bool includeGrades, bool sortByLastName, bool displayHistogram)
+void OutputBuilder::buildFullOutput(Roster& students, int columnNumber, int columnWidth, bool includeGrades, bool sortByLastName, bool displayHistogram)
 {
     if (columnNumber <= 0)
     {
@@ -223,47 +216,57 @@ string OutputBuilder::BuildFullOutput(Roster& students, int columnNumber, int co
 
     this -> sortStudentsIntoGradeCategories(students);
     this -> sortAllStudentGroupsByFirstOrLastName(sortByLastName);
-    string returnString;
     string baseStatementString = "Students earning an ";
 
-    if (this -> studentsWithGradeA.Size() != 0)
+    if (this -> studentsWithGradeA.size() != 0)
     {
-        returnString += baseStatementString + "A" + "\n";
-        returnString += this -> buildOutputForGrade(this -> studentsWithGradeA, columnNumber, columnWidth, includeGrades);
-        returnString += "\n";
+        cout << baseStatementString << "A" << endl;
+        this -> buildOutputForGrade(this -> studentsWithGradeA, columnNumber, columnWidth, includeGrades);
     }
-    if (this -> studentsWithGradeB.Size() != 0)
+    if (this -> studentsWithGradeB.size() != 0)
     {
-        returnString += baseStatementString + "B" + "\n";
-        returnString += this -> buildOutputForGrade(this -> studentsWithGradeB, columnNumber, columnWidth, includeGrades);
-        returnString += "\n";
+        cout << baseStatementString << "A" << endl;
+        this -> buildOutputForGrade(this -> studentsWithGradeB, columnNumber, columnWidth, includeGrades);
     }
-    if (this -> studentsWithGradeC.Size() != 0)
+    if (this -> studentsWithGradeC.size() != 0)
     {
-        returnString += baseStatementString + "C" + "\n";
-        returnString += this -> buildOutputForGrade(this -> studentsWithGradeC, columnNumber, columnWidth, includeGrades);
-        returnString += "\n";
+        cout << baseStatementString << "A" << endl;
+        this -> buildOutputForGrade(this -> studentsWithGradeC, columnNumber, columnWidth, includeGrades);
     }
-    if (this -> studentsWithGradeD.Size() != 0)
+    if (this -> studentsWithGradeD.size() != 0)
     {
-        returnString += baseStatementString + "D" + "\n";
-        returnString += this -> buildOutputForGrade(this -> studentsWithGradeD, columnNumber, columnWidth, includeGrades);
-        returnString += "\n";
+        cout << baseStatementString << "A" << endl;
+        this -> buildOutputForGrade(this -> studentsWithGradeD, columnNumber, columnWidth, includeGrades);
     }
-    if (this -> studentsWithGradeF.Size() != 0)
+    if (this -> studentsWithGradeF.size() != 0)
     {
-        returnString += baseStatementString + "F" + "\n";
-        returnString += this -> buildOutputForGrade(this -> studentsWithGradeF, columnNumber, columnWidth, includeGrades);
-        returnString += "\n";
+        cout << baseStatementString << "A" << endl;
+        this -> buildOutputForGrade(this -> studentsWithGradeF, columnNumber, columnWidth, includeGrades);
     }
     if (displayHistogram)
     {
-        returnString += this -> buildGradeHistogram();
+        this -> buildGradeHistogram();
     }
+}
 
-    return returnString;
+void OutputBuilder::displayUsageStatement()
+{
+    cout << "Usage: gradeanalyzer infile [outfile] [options]" << endl;
+    cout << "Performs a simple grade analysis of the students and grades contained in infile." << endl;
 
+    cout << left << setw(20) << "infile" << left << setw(100) << "The input file to analyze the grades of." << endl;
+    cout << left << setw(20) << "outfile" << left << setw(100) << "The output file to write the output to." << endl;
 
+    cout << "Options:" << endl;
+
+    cout << left << setw(20) << "--help" << left << setw(100) << "Displays this usage statement." << endl;
+    cout << left << setw(20) << "-c <number>" << left << setw(100) << "Changes the number of output columns to the number specified. The default number of columns is 4." << endl;
+    cout << left << setw(20) << "-a <first last grade>" << left << setw(100) << "Add the specified student (case insensitive) to the output. E.g., -a john doe 85 would add john doe with a 85 grade to output." << endl;
+    cout << left << setw(20) << "-g" << left << setw(100) << "Displays student grade with the output." << endl;
+    cout << left << setw(20) << "-h" << left << setw(100) << "Displays a histogram of the grades in addition to the other output" << endl;
+    cout << left << setw(20) << "-sf" << left << setw(100) << "Displays the output in alphabetic order by student’s first name. The default order is by student’s last name." << endl;
+    cout << left << setw(20) << "-w <number>" << left << setw(100) << "Changes the column width for the output columns. The default column width is 20." << endl;
+    cout << endl;
 }
 
 }

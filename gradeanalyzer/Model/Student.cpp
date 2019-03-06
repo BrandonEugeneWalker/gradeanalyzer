@@ -20,6 +20,13 @@ Student::Student()
     this -> grade = 0;
 }
 
+Student::Student(string firstName, string lastName, int grade)
+{
+    this -> firstName = firstName;
+    this -> lastName = lastName;
+    this -> grade = grade;
+}
+
 Student::~Student()
 {
 #if DEBUG_LEVEL >= 3
@@ -27,22 +34,22 @@ Student::~Student()
 #endif // DEBUG_LEVEL
 }
 
-string Student::GetFirstName() const
+string Student::getFirstName() const
 {
     return this -> firstName;
 }
 
-string Student::GetLastName() const
+string Student::getLastName() const
 {
     return this -> lastName;
 }
 
-int Student::GetGrade()
+int Student::getGrade()
 {
     return this -> grade;
 }
 
-void Student::SetFirstName(const string& firstName)
+void Student::setFirstName(const string& firstName)
 {
     if (firstName.empty())
     {
@@ -51,7 +58,7 @@ void Student::SetFirstName(const string& firstName)
     this -> firstName = firstName;
 }
 
-void Student::SetLastName(const string& lastName)
+void Student::setLastName(const string& lastName)
 {
     if (firstName.empty())
     {
@@ -60,7 +67,7 @@ void Student::SetLastName(const string& lastName)
     this -> lastName = lastName;
 }
 
-void Student::SetGrade(int grade)
+void Student::setGrade(int grade)
 {
     if (grade < 0)
     {
@@ -69,7 +76,7 @@ void Student::SetGrade(int grade)
     this -> grade = grade;
 }
 
-string Student::GetDescription()
+string Student::getDescription()
 {
     string first = this -> firstName;
     string last = this -> lastName;
