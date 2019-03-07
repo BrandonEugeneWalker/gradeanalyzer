@@ -8,7 +8,7 @@ namespace IO
 FileReader::FileReader()
 {
 #if DEBUG_LEVEL > 3
-        cout << "In FileReader constructor" << endl;
+    cout << "In FileReader constructor" << endl;
 #endif // DEBUG_LEVEL
 }
 
@@ -64,7 +64,7 @@ Roster FileReader::readFile(const string& fileName)
 {
     if (fileName.empty())
     {
-        throw new invalid_argument("The file name cannot be empty!");
+        throw invalid_argument("The file name cannot be empty!");
     }
 
     ifstream file(fileName);

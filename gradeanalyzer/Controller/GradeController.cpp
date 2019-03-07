@@ -32,8 +32,17 @@ void GradeController::displayOutput()
 
 void GradeController::loadFile()
 {
-    Roster loadedFile = fileReader.readFile(inputFile);
-    this -> unsortedRoster.merge(loadedFile);
+    try
+    {
+        Roster loadedFile = fileReader.readFile(inputFile);
+        this -> unsortedRoster.merge(loadedFile);
+    }
+    catch (invalid_argument ie)
+    {
+        this -> displayUsageStatement();
+        exit(0);
+    }
+
 }
 
 void GradeController::processArguments(int argc, char* argv[])

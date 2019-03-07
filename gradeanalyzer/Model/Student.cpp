@@ -65,7 +65,7 @@ void Student::setFirstName(const string& firstName)
 {
     if (firstName.empty())
     {
-        throw new invalid_argument(NAME_ERROR);
+        throw invalid_argument(NAME_ERROR);
     }
     this -> firstName = firstName;
 }
@@ -74,7 +74,7 @@ void Student::setLastName(const string& lastName)
 {
     if (firstName.empty())
     {
-        throw new invalid_argument(NAME_ERROR);
+        throw invalid_argument(NAME_ERROR);
     }
     this -> lastName = lastName;
 }
@@ -83,7 +83,7 @@ void Student::setGrade(int grade)
 {
     if (grade < 0 || grade > 100)
     {
-        throw new invalid_argument(GRADE_ERROR);
+        throw invalid_argument(GRADE_ERROR);
     }
     this -> grade = grade;
 }

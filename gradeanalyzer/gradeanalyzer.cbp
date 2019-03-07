@@ -11,7 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="test -c 0" />
+				<Option parameters="-g -c 5  -w 30 -a Added Added 69 -h -sf" />
 				<Compiler>
 					<Add option="-std=c++11" />
 					<Add option="-g" />
@@ -21,7 +21,7 @@
 					<Add directory="Controller" />
 				</Compiler>
 				<Environment>
-					<Variable name="DEBUG_LEVEL" value="3" />
+					<Variable name="DEBUG_LEVEL" value="0" />
 				</Environment>
 			</Target>
 		</Build>
