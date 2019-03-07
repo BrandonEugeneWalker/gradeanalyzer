@@ -8,7 +8,7 @@ namespace IO
 FileReader::FileReader()
 {
 #if DEBUG_LEVEL > 3
-    cout << "In FileReader constructor" << endl;
+        cout << "In FileReader constructor" << endl;
 #endif // DEBUG_LEVEL
 }
 

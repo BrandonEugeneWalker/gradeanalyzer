@@ -18,6 +18,7 @@
 					<Add directory="Model" />
 					<Add directory="IO" />
 					<Add directory="View" />
+					<Add directory="Controller" />
 				</Compiler>
 				<Environment>
 					<Variable name="DEBUG_LEVEL" value="3" />
@@ -29,10 +30,10 @@
 			<Add option="-std=c++11" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Controller/GradeController.cpp" />
+		<Unit filename="Controller/GradeController.h" />
 		<Unit filename="IO/FileReader.cpp" />
 		<Unit filename="IO/FileReader.h" />
-		<Unit filename="IO/FileWriter.cpp" />
-		<Unit filename="IO/FileWriter.h" />
 		<Unit filename="Model/Roster.cpp" />
 		<Unit filename="Model/Roster.h" />
 		<Unit filename="Model/Student.cpp" />

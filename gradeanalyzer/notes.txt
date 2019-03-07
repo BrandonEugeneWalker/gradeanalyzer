@@ -1,1 +1,4 @@
-
+Known Issues:
+Sometimes there is a extra blank line between the different letter grade outputs. I think this is caused by there being the same number of students as columns.
+If a students name has any spaces in it the name will not output with the correct capitalization.
+If the output file is specified as only a name for some reason it will not save, a path has to be specified as well.
