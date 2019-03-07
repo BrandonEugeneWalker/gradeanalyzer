@@ -40,6 +40,8 @@ public:
     //  The student cannot be a null pointer.
     //@postcondition
     //  the student is added.
+    //@para student
+    //  the student to add
     void addStudent(Student& student);
 
     //Will sort the vector by last name.
@@ -68,6 +70,8 @@ public:
     //  none
     //@postcondition
     //  the rosters are merged.
+    //@para roster
+    //  the roster to merge with
     void merge(Roster roster);
 
 };

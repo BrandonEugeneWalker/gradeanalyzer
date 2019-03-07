@@ -4,6 +4,9 @@
 #include <string>
 using namespace std;
 
+#define NAME_ERROR "A name cannot be empty."
+#define GRADE_ERROR "A grade must be between 0 and 100 inclusive."
+
 
 namespace model
 {
@@ -25,6 +28,19 @@ public:
     //  A new student object is created with default values.
     Student();
 
+    //Creates a new Student object with the given parameters.
+    //@precondition
+    //  first name cannot be empty
+    //  last name cannot be empty
+    // grade must be between 0 and 100 inclusive
+    //@postcondition
+    //  a new student is created
+    //@para firstName
+    //  the first name
+    //@para lastName
+    //  the last name
+    //@para grade
+    //  the grade
     Student(string firstName, string lastName, int grade);
 
     //Destroys a student object.
@@ -56,6 +72,8 @@ public:
     //  the first name cannot be none
     //@postcondition
     //  the first name is set
+    //@para firstName
+    //  the first name
     void setFirstName(const string& firstName);
 
     //Sets the last name of a student.
@@ -63,13 +81,17 @@ public:
     //  the last name cannot be none
     //@postcondition
     //  the last name is set
+    //@para lastName
+    //  the last name
     void setLastName(const string& lastName);
 
     //Sets the grade of a student.
     //@precondition
-    //  grade must be greater than or equal to 0
+    //  grade must be between 0 and 100 inclusive
     //@postcondition
     //  the grade is set
+    //@para grade
+    //  the grade
     void setGrade(int grade);
 
     //Gets the combined description of the Student.

@@ -36,46 +36,47 @@ vector<string> argumentCollection;
 
 
 
-void displayOutput()
-{
-    outputBuilder.buildFullOutput(unsortedRoster, columnNumber, columnWidth, includeGrades, sortByLastName, displayHistrogram);
-}
-
 void displayUsageStatement()
 {
     outputBuilder.displayUsageStatement();
 }
 
-void loadFile()
+void displayOutput()
 {
 
-
-
+    outputBuilder.buildFullOutput(unsortedRoster, columnNumber, columnWidth, includeGrades, sortByLastName, displayHistrogram);
 
 }
 
-void processArguments()
+void loadFile()
 {
-    int i = 0;
-    while (i < argumentCollection.size())
+    Roster loadedFile = fileReader.readFile(inputFile);
+    unsortedRoster.merge(loadedFile);
+}
+
+void processArguments(int argc, char* argv[])
+{
+    int i = 1;
+    while (i < argc)
     {
-        string currentArgument = argumentCollection[i];
+        string currentArgument = argv[i];
+
         if (currentArgument == "--help")
         {
             displayUsageStatement();
-            i++;
+            exit(0);
         }
         else if (currentArgument == "-c")
         {
-            int newColumnNumber = stoi(argumentCollection[i + 1]);
+            int newColumnNumber = stoi(argv[i + 1]);
             columnNumber = newColumnNumber;
             i = i + 2;
         }
         else if (currentArgument == "-a")
         {
-            string firstName = argumentCollection[i + 1];
-            string lastName = argumentCollection[i + 2];
-            int grade = stoi(argumentCollection[i + 3]);
+            string firstName = argv[i + 1];
+            string lastName = argv[i + 2];
+            int grade = stoi(argv[i + 3]);
             Student student(firstName, lastName, grade);
             unsortedRoster.addStudent(student);
             i = i + 4;
@@ -97,22 +98,25 @@ void processArguments()
         }
         else if (currentArgument == "-w")
         {
-            int newColumnWidth = stoi(argumentCollection[i + 1]);
+            int newColumnWidth = stoi(argv[i + 1]);
+            columnWidth = newColumnWidth;
             i = i + 2;
         }
         else
         {
-            if (!hasEncounteredInfile)
+            if (!hasEncounteredInfile && currentArgument[0] != '-')
             {
-                inputFile = argumentCollection[i];
+                inputFile = argv[i];
+                hasEncounteredInfile = true;
             }
-            else if (!hasEncounteredOutfile)
+            else if (!hasEncounteredOutfile && currentArgument[0] != '-')
             {
-                outputFile = argumentCollection[i];
+                outputFile = argv[i];
+                hasEncounteredOutfile = true;
             }
             else
             {
-                throw new invalid_argument("Not a valid argument!");
+                throw invalid_argument("This is not a valid argument!");
             }
             i++;
         }
@@ -139,26 +143,27 @@ void outputToFile()
 
 int main(int argc, char*argv[])
 {
-    if(argc == 0)
+    if(argc == 1)
+    {
+        displayUsageStatement();
+    }
+
+    try
+    {
+        processArguments(argc, argv);
+        loadFile();
+        displayOutput();
+    }
+    catch (exception& e)
     {
         displayUsageStatement();
         exit(0);
     }
 
-    string argumentValue;
-    for (int i = 0; i < argc; i++)
+    if (hasEncounteredOutfile)
     {
-        char* charecter = argv[i];
-        if (*charecter != ' ')
-        {
-            argumentValue += charecter;
-        }
-        else
-        {
-            argumentCollection.push_back(argumentValue);
-            argumentValue = "";
-        }
+        outputToFile();
     }
 
-    processArguments();
+    return(0);
 }

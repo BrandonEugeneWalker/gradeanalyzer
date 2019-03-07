@@ -3,8 +3,6 @@
 namespace view
 {
 
-
-
 OutputBuilder::OutputBuilder()
 {
 #if DEBUG_LEVEL >= 3
@@ -78,16 +76,18 @@ void OutputBuilder::sortStudentsIntoGradeCategories(Roster& students)
 string OutputBuilder::setNameToCamalCase(string name)
 {
     string returnString;
-    int count = 1;
+    int i = 1;
     for(char currentChar : name)
     {
-        if (count == 1)
+        if (i == 1)
         {
             returnString += toupper(currentChar);
+            i++;
         }
         else
         {
             returnString += tolower(currentChar);
+            i++;
         }
     }
     return returnString;
@@ -103,7 +103,7 @@ string OutputBuilder::buildStudentDescriptionWithoutGrade(Student& student)
 
 string OutputBuilder::buildStudentDescriptionWithGrade(Student& student)
 {
-    string returnString = this -> buildStudentDescriptionWithGrade(student);
+    string returnString = this -> buildStudentDescriptionWithoutGrade(student);
     int grade = student.getGrade();
     returnString += " (" + to_string(grade) + ")";
     return returnString;
@@ -148,6 +148,7 @@ void OutputBuilder::buildOutputForGrade(Roster& currentRoster, int columnNumber,
         }
     }
     cout << endl;
+    cout << endl;
 }
 
 void OutputBuilder::sortAllStudentGroupsByFirstOrLastName(bool sortByLastName)
@@ -184,7 +185,7 @@ void OutputBuilder::buildGradeHistogram()
     string gradeFHistogramBar(numberOfGradeF, '*');
 
 
-    string returnString = "Grade Histogram:\n";
+    cout << "Grade Histogram:" << endl;
     cout << "A: " << gradeAHistogramBar << endl;
     cout << "B: " << gradeBHistogramBar << endl;
     cout << "C: " << gradeCHistogramBar << endl;
@@ -205,13 +206,13 @@ string OutputBuilder::buildFileOutput(Roster students)
 
 void OutputBuilder::buildFullOutput(Roster& students, int columnNumber, int columnWidth, bool includeGrades, bool sortByLastName, bool displayHistogram)
 {
-    if (columnNumber <= 0)
+    if (columnNumber < 1)
     {
-        throw new invalid_argument("Column number must be a positive integer.");
+        throw invalid_argument("Column number must be a positive integer.");
     }
-    if (columnWidth <= 0)
+    if (columnWidth < 1)
     {
-        throw new invalid_argument("Column width must be a positive integer.");
+        throw invalid_argument("Column width must be a positive integer.");
     }
 
     this -> sortStudentsIntoGradeCategories(students);
@@ -220,27 +221,27 @@ void OutputBuilder::buildFullOutput(Roster& students, int columnNumber, int colu
 
     if (this -> studentsWithGradeA.size() != 0)
     {
-        cout << baseStatementString << "A" << endl;
+        cout << baseStatementString << "A:" << endl;
         this -> buildOutputForGrade(this -> studentsWithGradeA, columnNumber, columnWidth, includeGrades);
     }
     if (this -> studentsWithGradeB.size() != 0)
     {
-        cout << baseStatementString << "A" << endl;
+        cout << baseStatementString << "B:" << endl;
         this -> buildOutputForGrade(this -> studentsWithGradeB, columnNumber, columnWidth, includeGrades);
     }
     if (this -> studentsWithGradeC.size() != 0)
     {
-        cout << baseStatementString << "A" << endl;
+        cout << baseStatementString << "C:" << endl;
         this -> buildOutputForGrade(this -> studentsWithGradeC, columnNumber, columnWidth, includeGrades);
     }
     if (this -> studentsWithGradeD.size() != 0)
     {
-        cout << baseStatementString << "A" << endl;
+        cout << baseStatementString << "D:" << endl;
         this -> buildOutputForGrade(this -> studentsWithGradeD, columnNumber, columnWidth, includeGrades);
     }
     if (this -> studentsWithGradeF.size() != 0)
     {
-        cout << baseStatementString << "A" << endl;
+        cout << baseStatementString << "F:" << endl;
         this -> buildOutputForGrade(this -> studentsWithGradeF, columnNumber, columnWidth, includeGrades);
     }
     if (displayHistogram)
@@ -254,18 +255,18 @@ void OutputBuilder::displayUsageStatement()
     cout << "Usage: gradeanalyzer infile [outfile] [options]" << endl;
     cout << "Performs a simple grade analysis of the students and grades contained in infile." << endl;
 
-    cout << left << setw(20) << "infile" << left << setw(100) << "The input file to analyze the grades of." << endl;
-    cout << left << setw(20) << "outfile" << left << setw(100) << "The output file to write the output to." << endl;
+    cout << left << setw(25) << "infile" << left << setw(100) << "The input file to analyze the grades of." << endl;
+    cout << left << setw(25) << "outfile" << left << setw(100) << "The output file to write the output to." << endl;
 
     cout << "Options:" << endl;
 
-    cout << left << setw(20) << "--help" << left << setw(100) << "Displays this usage statement." << endl;
-    cout << left << setw(20) << "-c <number>" << left << setw(100) << "Changes the number of output columns to the number specified. The default number of columns is 4." << endl;
-    cout << left << setw(20) << "-a <first last grade>" << left << setw(100) << "Add the specified student (case insensitive) to the output. E.g., -a john doe 85 would add john doe with a 85 grade to output." << endl;
-    cout << left << setw(20) << "-g" << left << setw(100) << "Displays student grade with the output." << endl;
-    cout << left << setw(20) << "-h" << left << setw(100) << "Displays a histogram of the grades in addition to the other output" << endl;
-    cout << left << setw(20) << "-sf" << left << setw(100) << "Displays the output in alphabetic order by student’s first name. The default order is by student’s last name." << endl;
-    cout << left << setw(20) << "-w <number>" << left << setw(100) << "Changes the column width for the output columns. The default column width is 20." << endl;
+    cout << left << setw(25) << "--help" << left << setw(100) << "Displays this usage statement." << endl;
+    cout << left << setw(25) << "-c <number>" << left << setw(100) << "Changes the number of output columns to the number specified. The default number of columns is 4." << endl;
+    cout << left << setw(25) << "-a <first last grade>" << left << setw(100) << "Add the specified student (case insensitive) to the output. E.g., -a john doe 85 would add john doe with a 85 grade to output." << endl;
+    cout << left << setw(25) << "-g" << left << setw(100) << "Displays student grade with the output." << endl;
+    cout << left << setw(25) << "-h" << left << setw(100) << "Displays a histogram of the grades in addition to the other output" << endl;
+    cout << left << setw(25) << "-sf" << left << setw(100) << "Displays the output in alphabetic order by student’s first name. The default order is by student’s last name." << endl;
+    cout << left << setw(25) << "-w <number>" << left << setw(100) << "Changes the column width for the output columns. The default column width is 20." << endl;
     cout << endl;
 }
 

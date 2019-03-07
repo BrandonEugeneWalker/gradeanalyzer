@@ -22,6 +22,18 @@ Student::Student()
 
 Student::Student(string firstName, string lastName, int grade)
 {
+    if (firstName == "")
+    {
+        throw invalid_argument(NAME_ERROR);
+    }
+    if (lastName == "")
+    {
+        throw invalid_argument(NAME_ERROR);
+    }
+    if (grade < 0 || grade > 100)
+    {
+        throw invalid_argument(GRADE_ERROR);
+    }
     this -> firstName = firstName;
     this -> lastName = lastName;
     this -> grade = grade;
@@ -53,7 +65,7 @@ void Student::setFirstName(const string& firstName)
 {
     if (firstName.empty())
     {
-        throw new invalid_argument("The first name cannot be empty!");
+        throw new invalid_argument(NAME_ERROR);
     }
     this -> firstName = firstName;
 }
@@ -62,16 +74,16 @@ void Student::setLastName(const string& lastName)
 {
     if (firstName.empty())
     {
-        throw new invalid_argument("The last name cannot be empty!");
+        throw new invalid_argument(NAME_ERROR);
     }
     this -> lastName = lastName;
 }
 
 void Student::setGrade(int grade)
 {
-    if (grade < 0)
+    if (grade < 0 || grade > 100)
     {
-        throw new invalid_argument("The grade cannot be less than 0");
+        throw new invalid_argument(GRADE_ERROR);
     }
     this -> grade = grade;
 }
